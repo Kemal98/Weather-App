@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+    <title>Weather App!</title>
+  </head>
+  
+  <body>
+    <nav class="nav">
+      <div style="overflow-y: none;" class="container">
+          <div class="logo">
+              <a href="#">Weather Forecast</a>
+          </div>
+          <div id="mainListDiv" class="main_list">
+              <ul class="navlinks">
+                <li><a href="#">TIME DAY</a></li>
+                <li><a href="#sevenDay">SEVEN DAY</a></li>
+                <li><a href="#16day">16 DAY WEATHER</a></li>
+                <li><a href="#AirQuality">AIR QUALITY</a></li>
+                <li class="mask">
+                <span id="weatherLondon" data-show></span>
+                <!--   <span id="weatherParis">Paris 33°C</span>
+                <span id="weatherBrisel">Brisel 23°C</span>
+                <span>Sarajevo 34°C</span>
+                <span>Zagreb 21°C</span> -->
+               </li>
+              </ul>
+              <div>
+            </div>
+          </div>
+          <span class="navTrigger">
+            <i></i>
+            <i></i>
+            <i></i>
+          </span>
+      </div>
+  </nav>
+
+  
+ 
+  <section class="home">
+    <!-- style="height:120vh; -->
+    <div class="elementStyle">
+      <div class="container">
+        <div id="weatherToday" data-aos="zoom-out" class="row">        
+            <div class="col-md-6">
+              <h2 id="text"> The weather today</h2>
+              <div class="carde">
+                <div class="searche">
+                  <input id="inputValue" type="text" class="search-bar" placeholder="Search">
+                  <button class="btn_" id="submit-b">
+                  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1.5em"
+                      width="1.5em" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0 0 11.6 0l43.6-43.5a8.2 8.2 0 0 0 0-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"></path>
+                    </svg></button>
+                </div>
+                <div class="weather loading">
+                  <h2 class="city">Weather in Denver</h2>
+                  <h1 class="temp">51°C</h1>
+                  <div class="flex">
+                    <img src="https://openweathermap.org/img/wn/04n.png" alt="" class="icon" />
+                    <div id="increase"><p class="description"></p></div>
+                  </div>
+                  <div><p class="humidity">Humidity: 60%</p></div>
+                  <div><p class="wind">Wind speed: 6.2 km/h</p></div>
+                  <div><p class="pressure">Pressure</p></div>
+                  <div><p class="feelLike" >Feels like: 6.2 km/h</p></div>
+                  <div><p class="dewPoint">Dew point: 12.33</p></div> 
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+<!-- Weather 7 days -->
+
+<div id="sevenDay"; >
+  <div class="container"  style="border-bottom: 1px solid #fff;">
+    <div  class="weatherSeven">
+    <div id="SeventDay" data-aos="zoom-out" class="row">  
+      <div class="col-md-6">
+        <h2 id="text">Select a location for the weather forecast for the next seven days</h2>
+        <div class="carde">
+          <div  style="padding-bottom: 4rem;" class="searche">
+            <input id="valueSeven" type="text" class="search-bar" placeholder="Search">
+            <button class="btn_seven" id="submit-b">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1.5em"
+                width="1.5em" xmlns="http://www.w3.org/2000/svg">
+                <path d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0 0 11.6 0l43.6-43.5a8.2 8.2 0 0 0 0-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"></path>
+              </svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+          <div class="container" style="height: 78%;">
+           
+            <div style="height: 20%;" class="weather__">
+            </div>
+           
+
+            <div class="future-forecast">
+             <div data-aos="fade-down-right" class="today" id="current-temp">
+                <!-- <div class="day">Tue</div>
+                <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
+                <div class="other">
+                    <div class="temp">Night - 25.6&#176; C</div>
+                    <div class="temp">Day - 35.6&#176; C</div> 
+                  -->
+                </div>        
+            <div id="weather-forecastt">
+                 <!-- <div data-aos="fade-down-left" class="weather-forecast-item">
+                    <div class="day">Tue</div>
+                    <img id="img-src" src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
+                    <div class="temp">Night - 25.6&#176; C</div>
+                    <div class="temp">Day - 35.6&#176; C</div>
+                     </div>
+               -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div id="weatherDayFour">
+    <div class="container" style="border-bottom: 1px solid #fff;">
+      <div id="16day" class="weatherSeven">
+        <div id="SeventDay" data-aos="zoom-out" class="row">  
+          <div class="col-md-6">
+            <h2 id="text">Weather forecast for 16 days</h2>
+            <div class="carde">
+              <div  class="searche">
+                <input id="foruDay" type="text" class="search-bar" placeholder="Search">
+                <button class="btn_foruDay" id="submit-b">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1.5em"
+                    width="1.5em" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0 0 11.6 0l43.6-43.5a8.2 8.2 0 0 0 0-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"></path>
+                  </svg></button>
+              </div>
+            </div>
+          </div>
+        </div> 
+          <div>
+            <div id="dateDay"  class="container">
+              <br>
+              <h2> Fully updated four times each day</h2>
+              <br>
+              <!-- <div>
+                <input id="myInput" onkeyup="searchTable()" type="text"placeholder="Search">
+            </div>   -->
+              <div class="col-md-12">
+                       <table id="weather16day" class="table">
+                          <tr style="line-height:2.5rem;font-size: 1.4rem;" class="table-header">
+                              <th class="cell">               
+                                 <input id="myInput" onkeyup="searchTable()" type="text"placeholder="Search">
+                              </th>
+                              <th class="cell">Temp</th>
+                              <th class="cell">Max temp</th>
+                              <th class="cell">Min temp</th>
+                              <th class="cell">Clouds</th>
+                              <th class="cell">Ozone</th>
+                              <th class="cell">Uv</th>
+                          </tr>
+                          <!-- <tr class="active">
+                            <td>1</td>
+                            <td>Smith</td>
+                            <td>Smith Mark</td>
+                            <td>#67/B Maxico Usa</td>
+                            <td>mark@gmail.com</td>
+                            <td>+3755438764</td>
+                        </tr> -->
+                      </table>
+                  </div>
+          </div>
+          </div>
+        </div>   
+    </div>
+
+<!-- Air quality map -->
+
+
+<div id="weatherDayFour">
+  <div class="container">
+    <div class="weatherSeven">
+      <div id="AirQuality" data-aos="zoom-out" class="row">  
+        <div class="col-md-6">
+          <h2 id="text">Air Quality Map</h2>
+          <div class="carde">
+            <div  style="padding-bottom: 4rem;" class="searche">
+              <input id="airQuality" type="text" class="search-bar" placeholder="Search">
+              <button class="btn_airQuality" id="submit-b">
+              <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1.5em"
+                  width="1.5em" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0 0 11.6 0l43.6-43.5a8.2 8.2 0 0 0 0-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"></path>
+                </svg></button>
+            </div>                     
+         <!-- <div id="scroll-text">
+          <span>Paris: PM10-1.72 </span>
+          <span>London: PM10-3.44 </span>
+          <span>Berlin: PM10-2.22</span>
+          <span>Sarajevo: PM10-3.00</span>
+         </div> -->
+          </div>
+        </div>
+      </div> 
+
+
+      <section class="sectionColor">
+        <div class="container">
+            <div class="app-wrap">
+                <header>
+                        <div id="map" style="width:100%; height:500px; border-radius: 8px; border: solid black 1px;"></div>
+                        <div class="container">
+                            <div class="row" style="background:none;">
+                              <h2 style="text-align:center; color:rgb(255, 255, 255); padding-bottom: 20px; font-size: 3rem;" >Air quality parameters !</h2>
+                              <div class="col-md-4 col-xl-3">
+                                  <div  style="border-radius: 1.25rem;" class="card bg-c-blue order-card">
+                                      <div class="card-block">
+                                        <div id="card_back" >
+                                          <h6 class="m-b-20">Good (0-12)</h6>
+                                          <h2 class="text-right"><i class="fa fa-cart-plus f-left"></i><span id="span_">(0-12)</span></h2>
+                                          <p class="m-b-0">Air quality is considered satisfactory...<span class="f-right"><img id="imge" src="https://www.airqo.africa/assets/images/face_good.png" alt=""></span></p>
+                                        </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              
+                              <div class="col-md-4 col-xl-3">
+                                  <div style="border-radius: 1.25rem;" class="card bg-c-green order-card">
+                                    <div class="card-block">
+                                      <div id="card_back" >  
+                                          <h6 class="m-b-20">Moderate </h6>
+                                          <h2 class="text-right"><i class="fa fa-rocket f-left"></i><span id="span_">(12.1 - 35.4)</span></h2>
+                                          <p class="m-b-0">Air quality is acceptable; however...<span class="f-right"><img id="imge" src="https://www.airqo.africa/assets/images/face_moderate.png" alt=""></span></p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div> 
+                              <div class="col-md-4 col-xl-3">
+                                  <div style="border-radius: 1.25rem;" class="card bg-c-yellow order-card">
+                                    <div class="card-block">
+                                      <div id="card_back" >  
+                                          <h6 class="m-b-20">Unhealthy</h6>
+                                          <h2 class="text-right"><i class="fa fa-refresh f-left"></i><span id="span_">(35.6 - 55.4)</span></h2>
+                                          <p class="m-b-0">	Unhealthy for Sensitive Groups....<span class="f-right"><img id="imge" src="https://www.airqo.africa/assets/images/face_unhealthy.png" alt=""></span></p>
+                                        </div>
+                                     </div>
+                                  </div>
+                              </div>
+                              
+                              <div class="col-md-4 col-xl-3">
+                                  <div style="border-radius: 1.25rem;" class="card bg-c-pink order-card">
+                                    <div class="card-block">
+                                      <div id="card_back" >
+                                          <h6 class="m-b-20">Unhealthy </h6>
+                                          <h2 class="text-right"><i class="fa fa-credit-card f-left"></i><span id="span_">(55.5 - 150.4)</span></h2>
+                                          <p class="m-b-1">	Everyone may begin to experience.. <span class="f-right"><img id="imge" src="https://www.airqo.africa/assets/images/face_unhealthy1.png" alt=""></span></p>
+                                            <!-- <p class="cut-text m-b-1"> members of sensitive groups may experience more serious health effects <p></span> -->
+                                          <!-- <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry</span> -->
+                                            </div>
+                                        </div>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+              <div>
+                <div data-aos="flip-up" class="location">
+                    <div id="city_Location" class="city">Enter a Location</div>           
+                    <div class="date">Current Date</div>
+                </div>
+                <div data-aos="flip-up" class="coordinates">
+                    <div class="lat">Lat.</div>
+                    <span id="lat-value">TBD</span>
+                    <div class="lon">Long.</div>
+                    <span id="lon-value">TBD</span>
+                </div>
+                <div data-aos="flip-up" class="weather">
+                    <span id="temp">TBD&deg;C</span>
+                </div>
+                <hr>
+                <div data-aos="flip-up" class="parameters">
+                    <h2>Air Quality Parameters :<span id="quality"></span></h2>
+                </div>
+                <hr>
+                <div class="air-quality">
+                <div data-aos="zoom-in-up" class="air-parameters">
+                    <p>Ozone(o3)</p>
+                    <div class="o3"></div>
+                    <hr>
+                    <p>CO</p>
+                    <div class="co"></div>
+                    <hr>
+                    <p>SO2</p>
+                    <div class="s02"></div>
+                    <hr>
+                    <p>NO2</p>
+                    <div class=n02></div>
+                    <hr>
+                    <p>PM10</p>
+                    <div class="pm10"></div>
+                    <hr>
+                    <p>PM2.5</p>
+                    <div class="pm25"></div>
+                </div>
+                <div data-aos="zoom-in-up" class = "last-update">
+                    <div class="o3-time">last-update</div>
+                    <hr>
+                    <div class="co-time">last-update</div>
+                    <hr>
+                    <div class="s02-time">last-update</div>
+                    <hr>
+                    <div class=n02-time>last-update</div>
+                    <hr>
+                    <div class="pm10-time">last-update</div>
+                    <hr>
+                    <div class="pm25-time">last-update</div>
+                </div>
+                <div data-aos="zoom-in-up" class="parameters-options">
+                    <div class="o3-value">TBD µg/m³</div>
+                    <hr>
+                    <div class="co-value">TBD µg/m³</div>
+                    <hr>
+                    <div class="so2-value">TBD µg/m³</div>
+                    <hr>
+                    <div class="no2-value">TBD µg/m³</div>
+                    <hr>
+                    <div class="pm10-value">TBD µg/m³</div>
+                    <hr>
+                    <div class="pm25-value">TBD µg/m³</div>
+                </div>
+              </div>
+                </div>
+           
+                </div>
+          </div>
+                </header>
+          </div>
+    </div>
+    </section>
+    
+
+  </div>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+    <!-- <script src="./vjezba/vjezba.js"></script> -->
+    <script>
+          $('.navTrigger').click(function () {
+    $(this).toggleClass('active');
+    console.log("Clicked menu");
+    $("#mainListDiv").toggleClass("show_list");
+    $("#mainListDiv").fadeIn();
+
+})
+
+
+        $(window).scroll(function() {
+            if ($(document).scrollTop() > 50) {
+                $('.nav').addClass('affix');
+                console.log("OK");
+            } else {
+                $('.nav').removeClass('affix');
+            }
+        });
+    </script>
+
+    <script src =" https://unpkg.com/aos@next/dist/aos.js "> </script> 
+  <script>  AOS . init ( ) ;  </script>
+  <script src="app.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js" integrity="sha512-x/vqovXY/Q4b+rNjgiheBsA/vbWA3IVvsS8lkQSX1gQ4ggSJx38oI2vREZXpTzhAv6tNUaX81E7QBBzkpDQayA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
