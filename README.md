@@ -1,3 +1,3 @@
 # Weather-App
 
-Live link:https://deluxe-hotteok-53f95b.netlify.app
+Live link:https://benevolent-churros-f012ac.netlify.app
